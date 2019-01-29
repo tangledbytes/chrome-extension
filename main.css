@@ -1,0 +1,133 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    background: url(background_image2.jpg) no-repeat center center/cover;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    position: relative;
+}
+.tasks-list{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 21vw;
+    background-color: rgba(0,0,0,0.5);
+}
+.tasks{
+    position: absolute;
+    background-color: white;
+    width: 13rem;
+    height: 3rem;
+    top: 2rem;
+    right: 21vw;
+    border-top-left-radius: 0.8rem;
+    border-bottom-left-radius: 0.8rem;
+    background: transparent;
+    border: 3px solid #b2bec3;
+    border-right: none;
+    cursor: pointer;
+    box-shadow: -0.3rem 0.3rem 0.8rem rgba(0,0,0,0.8);
+}
+.tasks:active{
+    box-shadow: none;
+}
+.toggle-position{
+    right: 0;
+}
+.material-icons{
+    color: black;
+    font-weight: 100;
+    font-size: 1.8rem;
+    margin: 0.5rem 0.5rem; 
+}
+.wrapper{
+    display: inline;
+}
+.hide{
+    display: none;
+}
+.task-list{
+    position: relative;
+    overflow: auto;
+    height: 80vh;
+    z-index: 1000;
+}
+.label{
+    margin-left: 1rem;
+    font-size: 1.5rem;
+}
+.text{
+    margin-left: 1rem;
+    width: 15rem;
+    height: 1.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    font-size: 1.2rem;
+    padding: 0.2rem 0.6rem;
+}
+.text:focus{
+    border: 2px solid rgb(19, 54, 168);
+    transition: border 0.5s;
+    outline: none;
+}
+.add{
+    position: relative;
+    top: 5px;
+    left: 6px;
+    margin: 0;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+.del-icon{
+    color: white;
+    position: absolute;
+    top: 3px;
+    right: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 100;
+}
+.add-task{
+    color: black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.list{
+    position: relative;
+    margin: 2rem 1rem;
+    font-size: 1.2rem;
+    border: 2px solid white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 50vh;
+    width: 100vw;
+    
+}
+
+.greet, .time{
+    text-align: center;
+    font-size: 3.8rem;
+    font-family: 'Aleo', serif;
+    font-weight: bold;
+    color: white;
+}
+
+.time{
+    letter-spacing: 0.6rem;
+    margin-bottom: 1.5rem;
+    font-weight: 100;
+}
