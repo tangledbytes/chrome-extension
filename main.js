@@ -9,9 +9,11 @@ const controller = () => {
 // Setup extension function here
 
     const setupExtension = () => {
-        const setupCenterUI = (function(){
+        const setupCenterUI = function(){
             let user_data = [];
-            let user_btn = document.querySelector('.user_data')
+            let user_btn = document.querySelector('.user_data');
+            document.querySelector('.display').classList.remove('hide');
+            document.querySelector('.greet').classList.add('hide');
             document.querySelector('.add-text').addEventListener('click', () => {
                 if(user_btn.value)
                 {
@@ -27,16 +29,21 @@ const controller = () => {
                 else
                 user_btn.focus();
         })
-    })();
+    };
 
-        const setupTaskUI = (function(){
+        const setupTaskUI = function(){
             window.localStorage.setItem('task_data','[]');
-        })();
+        };
 
         // Reload page after setup is completed
         document.querySelector('.setup-complete').addEventListener('click', () => {
-            location = location;
-        })    
+            window.location.reload();
+        })
+        
+        return {
+            setupCenterUI: setupCenterUI,
+            setupTaskUI: setupTaskUI
+        }
     };
 
 // =======================================================================================================
@@ -174,6 +181,7 @@ const controller = () => {
     
         }
         return {
+            outputUI: outputUI,
             toggleTaskbar: toggleTaskbar,
             addTasks: addTasks,
             deleteTask: deleteTask
@@ -181,28 +189,29 @@ const controller = () => {
     })();
 
 // ========================================================================================================
-// AJAX call to Unsplash here
+// AJAX call to Unsplash here for changing backgrond
 
-    document.querySelector('.change-background').addEventListener('click', background);
+    const changeBackground = function(){
+        document.querySelector('.change-background').addEventListener('click', background);
 
-    function background(){
-        const Http = new XMLHttpRequest();
-        const url='https://api.unsplash.com/photos/random/?client_id=24514248bf7adefbe5d86d02567c34f6394c4eb6b92028540cda035d3071ef1e';
-        Http.open("GET", url, true);
-        Http.send();
-        Http.onreadystatechange=(e)=>{
-            console.log(typeof Http.responseText);
-        var response = Http.responseText;
-        console.log(response);
-        var responseObj = JSON.parse(Http.responseText);
-        console.log(responseObj);
-        var url = responseObj.links.html;
-        console.log(url);
-        document.body.style.backgroundImage = `url(${url}/download)`;
+        function background(){
+            const Http = new XMLHttpRequest();
+            const url='https://api.unsplash.com/photos/random/?client_id=24514248bf7adefbe5d86d02567c34f6394c4eb6b92028540cda035d3071ef1e';
+            Http.open("GET", url, true);
+            Http.send();
+            Http.onreadystatechange=(e)=>{
+                console.log(typeof Http.responseText);
+            var response = Http.responseText;
+            console.log(response);
+            var responseObj = JSON.parse(Http.responseText);
+            console.log(responseObj);
+            var url = responseObj.links.html;
+            console.log(url);
+            document.body.style.backgroundImage = `url(${url}/download)`;
+            }
         }
+        
     }
-    
-
 // ========================================================================================================
 // Manage UIexec function execution here   
 
@@ -211,8 +220,8 @@ const controller = () => {
         // Calling setupExtension only if it was not setup earlier
         if(!window.localStorage.getItem('user_data'))
         {
-            document.querySelector('.display').classList.remove('hide');
-            setupExtension();
+            setupExtension().setupCenterUI();
+            setupExtension().setupTaskUI();
             // output time
             centerUI.displayTime();
         }
@@ -226,6 +235,11 @@ const controller = () => {
             taskUI.toggleTaskbar();
             taskUI.addTasks();
             taskUI.deleteTask();
+            taskUI.outputUI();
+            // Change background call here to setup event listener
+            changeBackground();
+            // Event listener to access setup manually
+            document.querySelector('.change-setup').addEventListener('click',setupExtension().setupCenterUI);
         }
 
     })();
