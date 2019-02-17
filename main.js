@@ -1,181 +1,235 @@
-window.onload = function(){
-    // OUTPUT UI
+// ======================================================================================================================
+
+const controller = () => {
+
+    let user_data = JSON.parse(window.localStorage.getItem('user_data'));
     let task_data = JSON.parse(window.localStorage.getItem('task_data'));
-    outputUI();
-    // Set Time
-    const timeEl = document.querySelector('.time');
-    timeEl.textContent = new Date().toLocaleTimeString().substring(0,5);
-    function curTime(){
-        let time = new Date().toLocaleTimeString();
-        timeEl.textContent = new Date().toLocaleTimeString().substring(0,5);
-    }
-    setInterval(curTime, 1000);
 
-    // Typing Effect
-    function typingEffect(){
-        // List of sentences
-        var _CONTENT = [ "Hey, I'm Utkarsh", 
-        "I'm a developer", 
-        "I love to develop new crazy stuff",
-        "This is a custom page" ];
+// =======================================================================================================
+// Setup extension function here
 
-        // Current sentence being processed
-        var _PART = 0;
+    const setupExtension = () => {
+        const setupCenterUI = (function(){
+            let user_data = [];
+            let user_btn = document.querySelector('.user_data')
+            document.querySelector('.add-text').addEventListener('click', () => {
+                if(user_btn.value)
+                {
+                    user_data.push(user_btn.value);
+                    window.localStorage.setItem('user_data', JSON.stringify(user_data)); // Storing data into local
 
-        // Character number of the current sentence being processed 
-        var _PART_INDEX = 0;
+                    // Clear input field
+                    user_btn.value = '';
 
-        // Holds the handle returned from setInterval
-        var _INTERVAL_VAL;
-
-        // Element that holds the text
-        var _ELEMENT = document.querySelector('.greet');
-
-        // Implements typing effect
-        function Type() { 
-            var text =  _CONTENT[_PART].substring(0, _PART_INDEX + 1);
-            _ELEMENT.textContent = text + '|';
-            _PART_INDEX++;
-        
-            // If full sentence has been displayed then start to delete the sentence after some time
-            if(text === _CONTENT[_PART]) {
-                clearInterval(_INTERVAL_VAL);
-                setTimeout(function() {
-                    _INTERVAL_VAL = setInterval(Delete, 100);
-                }, 1000);
-            }
-        }
-
-        // Implements deleting effect
-        function Delete() {
-            var text =  _CONTENT[_PART].substring(0, _PART_INDEX - 1);
-            _ELEMENT.textContent = text + '|';
-            _PART_INDEX--;
-        
-            // If sentence has been deleted then start to display the next sentence
-            if(text === '') {
-                clearInterval(_INTERVAL_VAL);
-            
-                // If last sentence then display the first one, else move to the next
-                if(_PART == (_CONTENT.length - 1))
-                    _PART = 0;
+                    // Bring focus back to the field
+                    user_btn.focus();
+                }
                 else
-                    _PART++;
-                _PART_INDEX = 0;
-            
-                // Start to display the next sentence after some time
-                setTimeout(function() {
-                    _INTERVAL_VAL = setInterval(Type, 100);
-                }, 200);
+                user_btn.focus();
+        })
+    })();
+
+        const setupTaskUI = (function(){
+            window.localStorage.setItem('task_data','[]');
+        })();
+
+        // Reload page after setup is completed
+        document.querySelector('.setup-complete').addEventListener('click', () => {
+            location = location;
+        })    
+    };
+
+// =======================================================================================================
+//  Manage centerUI functions here
+
+    const centerUI = (function(){
+
+        const displayTime = () => {
+        const timeEl = document.querySelector('.time');
+        timeEl.textContent = new Date().toLocaleTimeString().substring(0,5);
+        function curTime(){
+            let time = new Date().toLocaleTimeString();
+            timeEl.textContent = new Date().toLocaleTimeString().substring(0,5);
+        }
+        setInterval(curTime, 1000);
+        }
+
+        function typingEffect()
+    {
+        // Setup variables
+        let greet = document.querySelector('.greet');
+        // Function to display string
+        const strDisplay = (count) => {
+            let i = 1;
+            let status = setInterval((count) => {
+                greet.textContent = user_data[count].substring(0,i) + '|';
+                if(i == user_data[count].length)
+                {
+                    clearInterval(status);
+                    setTimeout(() => {
+                        strDelete(count); // Call strDelete function to delete string from display
+                    }, 500);
+                }
+                ++i;
+            }, 120, count);
             }
+        
+        const strDelete = (count) => {
+            let i = user_data[count].length;
+            let status = setInterval((count) => {
+                greet.textContent = user_data[count].substring(0,i) + '|';
+                if(i == 0)
+                {
+                    clearInterval(status);
+                    if(++count < user_data.length)
+                    {
+                        setTimeout(() => {
+                            strDisplay(count); // Again call display function to display next set of strings
+                        }, 100);
+                    }
+                    else{
+                        setTimeout(() => {
+                            strDisplay(0); // Again call display function to display next set of strings
+                        }, 100);
+                    }
+                }
+                --i;
+            }, 100, count);
+        }
+    
+    
+        strDisplay(0);
         }
 
-        // Start the typing effect on load
-        _INTERVAL_VAL = setInterval(Type, 100);
-    }
-    typingEffect();
-    // Test Unsplash
-
-    // document.querySelector('.tasks').addEventListener('click', background);
-
-    // function background(){
-    //     const Http = new XMLHttpRequest();
-    //     const url='https://api.unsplash.com/photos/random/?client_id=24514248bf7adefbe5d86d02567c34f6394c4eb6b92028540cda035d3071ef1e';
-    //     Http.open("GET", url, true);
-    //     Http.send();
-    //     Http.onreadystatechange=(e)=>{
-    //         console.log(typeof Http.responseText);
-    //     var response = Http.responseText;
-    //     console.log(response);
-    //     var responseObj = JSON.parse(Http.responseText);
-    //     console.log(responseObj);
-    //     var url = responseObj.links.html;
-    //     console.log(url);
-    //     document.body.style.backgroundImage = `url(${url}/download)`;
-    //     }
-    // }
-    
-    // Works, but is slow so....Leave it for now
-
-    // Save Tasks
-    
-    
-    document.querySelector('.add').addEventListener('click', function(){
-        if(document.querySelector('.text').value){
-            task_data.push(document.querySelector('.text').value);
-        // Clear Input field
-        document.querySelector('.text').value = '';
-        // Display result output function
-        outputUI();
-        // Bring focus back to input
-        document.querySelector('.text').focus();
-        }else{
-            document.querySelector('.text').focus();
+        return {
+            displayTime: displayTime,
+            typingEffect: typingEffect
         }
-    });
 
-    function outputUI(){
-        let text_submit = '';
-            window.localStorage.setItem('task_data', JSON.stringify(task_data));
-            console.log();
-        for(let i = 0; i < task_data.length; ++i){
-            text_submit += `<div class="list" id="task-${i}">${task_data[i]}<i class="material-icons del-icon">cancel</i></div>`;
-        }
-        document.querySelector('.task-list').innerHTML = text_submit;
-    
-    }
-       
+    })();   
+   
+// ========================================================================================================
+// Manage taskUI here
 
-    // Delete Task
+    const taskUI = (function(){
 
-        // abstract id of selected task
+        
 
-        var selectedTask = document.querySelector('.task-list');
-        selectedTask.addEventListener('click', function(event){
-            var deleteID = event.target.parentNode.id;
-
-            // Split the id to get the index number
-
-            let ID = deleteID.split('-')[1];
-
-            // Remove the task from task_data array
-
-            task_data.splice(Number(ID), 1);
-
-            // Update UI
-
-            outputUI();
-            });
-
-    // Toggle Addtask Tab in UI
-
+        const toggleTaskbar = () => {
             document.querySelector('.tasks').addEventListener('click', function(){
                 document.querySelector('.tasks-list').classList.toggle('hide');
                 document.querySelector('.tasks').classList.toggle('toggle-position');
             });
+        }
 
-    // EXTREMELY IMPORTANT STEP !! STORING TASKS TO LOCALSTORAGE!!
-            // LocalStorage can only store strings
-            // To store arrays or objects you would have to convert them to strings.
-            // To do this we use the JSON.stringify() method before passing to setItem()
-           
+        const addTasks = () => {
+            document.querySelector('.add').addEventListener('click', function(){
+                if(document.querySelector('.text').value)
+                {
+                    task_data.push(document.querySelector('.text').value);
 
+                    // Clear Input field
+                    document.querySelector('.text').value = '';
 
+                    // Display result output function
+                    outputUI();
+
+                    // Bring focus back to input
+                    document.querySelector('.text').focus();
+                }
+                else
+                document.querySelector('.text').focus();
+            });
+        }
+
+        function outputUI(){
+            let text_submit = '';
+            window.localStorage.setItem('task_data', JSON.stringify(task_data));
+                // console.log();
+            for(let i = 0; i < task_data.length; ++i)
+            {
+                text_submit += `<div class="list" id="task-${i}">${task_data[i]}<i class="material-icons del-icon">cancel</i></div>`;
+            }
+            document.querySelector('.task-list').innerHTML = text_submit;
+        
+        }
+
+        function deleteTask() {
+            var selectedTask = document.querySelector('.task-list');
+            selectedTask.addEventListener('click', function(event){
+                var deleteID = event.target.parentNode.id;
+    
+                // Split the id to get the index number
+    
+                let ID = deleteID.split('-')[1];
+    
+                // Remove the task from task_data array
+    
+                task_data.splice(Number(ID), 1);
+    
+                // Update UI
+    
+                outputUI();
+                });
+    
+        }
+        return {
+            toggleTaskbar: toggleTaskbar,
+            addTasks: addTasks,
+            deleteTask: deleteTask
+        }
+    })();
+
+// ========================================================================================================
+// AJAX call to Unsplash here
+
+    document.querySelector('.change-background').addEventListener('click', background);
+
+    function background(){
+        const Http = new XMLHttpRequest();
+        const url='https://api.unsplash.com/photos/random/?client_id=24514248bf7adefbe5d86d02567c34f6394c4eb6b92028540cda035d3071ef1e';
+        Http.open("GET", url, true);
+        Http.send();
+        Http.onreadystatechange=(e)=>{
+            console.log(typeof Http.responseText);
+        var response = Http.responseText;
+        console.log(response);
+        var responseObj = JSON.parse(Http.responseText);
+        console.log(responseObj);
+        var url = responseObj.links.html;
+        console.log(url);
+        document.body.style.backgroundImage = `url(${url}/download)`;
+        }
+    }
+    
+
+// ========================================================================================================
+// Manage UIexec function execution here   
+
+    const UIexec = (function(){
+
+        // Calling setupExtension only if it was not setup earlier
+        if(!window.localStorage.getItem('user_data'))
+        {
+            document.querySelector('.display').classList.remove('hide');
+            setupExtension();
+            // output time
+            centerUI.displayTime();
+        }
+        else
+        {
+            // output time
+            centerUI.displayTime();        
+            // output the user_data
+            centerUI.typingEffect();
+            // Run taskUI function only if setup is completed
+            taskUI.toggleTaskbar();
+            taskUI.addTasks();
+            taskUI.deleteTask();
+        }
+
+    })();
 
 }
-// const controler = (function(){
-
-//     const setupEventListeners = () => {
-//         console.log('test');
-//     }
-//     return {
-//         initiate: () => {
-//             setupEventListeners();
-//         },
-// }
-
-// })();
-
-// window.onload = controler.initiate;
-
+window.onload = controller;
 

@@ -7,9 +7,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css?family=Aleo:400,700" rel="stylesheet">
+    <script src="main.js"></script>
     <title>New Tab</title>
 </head>
 <body>
+    <div class="change-background"><span>Change background</span></div>
     <div class="tasks toggle-position">
         <i class="material-icons">add_circle_outline</i>
         <span class="add-task">Add Tasks</span>
@@ -26,7 +28,20 @@
     <div class="container">
         <div class="time"></div>
         <div class="greet"></div>
+        <div class="display hide">
+            <div class="setup">
+                <label for="none" class="">Add content to be displayed (Can be more than one!)</label>
+                <input type="text" class="user_data">
+                <button class="add-text btn">Add</button>
+                <button class="setup-complete btn">Submit</button>
+            </div>
+        </div>
+        <div class="display hide">
+            <div class="setup">
+                <img src="ajax-loader.gif" alt="" class="loading-gif">
+                <div>Loading, Please wait</div>
+            </div>
+        </div>
     </div>
-    <script src="main.js"></script>
 </body>
 </html>
