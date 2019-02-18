@@ -16,12 +16,16 @@ It still needs a lot of code refactoring and will be updated soon.
 3. Custom greet method added
 
 ### Here are some screenshots:
-Let the extension greet you
+
+#### Let the extension greet you
 ![ess1](https://user-images.githubusercontent.com/45818886/52974896-3e78a000-33e9-11e9-8093-b0f8db5225e0.png)
-Display custom text with typing effect
+
+#### Display custom text with typing effect
 ![ess2](https://user-images.githubusercontent.com/45818886/52974897-3e78a000-33e9-11e9-82b1-3332286215f5.png)
-Change background images and save the changes
+
+#### Change background images and save the changes
 ![ess3](https://user-images.githubusercontent.com/45818886/52974898-3f113680-33e9-11e9-9ea0-34d3048d6ee3.png)
-Add tasks that you look forward to complete
+
+#### Add tasks that you look forward to complete
 ![ess4](https://user-images.githubusercontent.com/45818886/52975005-afb85300-33e9-11e9-8d1c-959ba3b9b0f2.png)
 
