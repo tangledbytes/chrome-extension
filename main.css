@@ -1,12 +1,16 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: black;
     background: url(background_image.jpg) no-repeat center center/cover;
     height: 100vh;
     overflow: hidden;
     color: white;
     position: relative;
+}
+.master-container{
+    background-color: rgba(0,0,0,0.4);
+    width: 100vw;
+    height: 100vh;
 }
 .tasks-list{
     position: absolute;
@@ -16,7 +20,7 @@ body{
     width: 21vw;
     background-color: rgba(0,0,0,0.5);
 }
-.tasks,.change-background, .change-setup{
+.tasks,.change-background, .change-setup, .just-greet, .stop-greet,.default-background{
     position: absolute;
     width: 13rem;
     height: 3rem;
@@ -30,7 +34,7 @@ body{
     cursor: pointer;
     box-shadow: -0.3rem 0.3rem 0.8rem rgba(0,0,0,0.8);
 }
-.change-background, .change-setup{
+.change-background, .change-setup, .just-greet, .stop-greet, .default-background{
     top: 2rem;
     left: 0; 
     border-radius: 0rem 0.8rem 0.8rem 0;
@@ -40,10 +44,19 @@ body{
 .change-setup{
     top: 7rem;
 }
-.tasks:active, .change-background:active, .change-setup:active{
+.just-greet, .stop-greet{
+    top: 12rem;
+    z-index: 1;
+}
+.default-background{
+    top: 17rem;
+    z-index: 1;
+}
+.tasks:active, .change-background:active, .change-setup:active, .just-greet:active, .stop-greet:active,
+.default-background:active{
     box-shadow: none;
 }
-.change-background span, .change-setup span{
+.change-background span, .change-setup span, .just-greet span, .stop-greet span, .default-background span{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -60,9 +73,6 @@ body{
 }
 .wrapper{
     display: inline;
-}
-.hide{
-    display: none;
 }
 .task-list{
     position: relative;
@@ -135,17 +145,23 @@ body{
 .greet, .time{
     text-align: center;
     font-size: 3.8rem;
-    font-family: 'Aleo', serif;
-    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
     color: white;
 }
 
 .time{
-    letter-spacing: 0.6rem;
+    letter-spacing: 0.2rem;
     margin-bottom: 1.5rem;
     font-weight: 100;
+    font-size: 5rem;
 }
-.setup{
+.display, .greet-me{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.setup, .setup-user-settings{
     font-size: 1.2rem;
     margin: 1rem;
     background-color: rgba(0,0,0,0.8);
@@ -153,8 +169,10 @@ body{
     justify-content: center;
     align-items: center;
     height: 5rem;
+    width: 65%;
+    border-radius: 0.3rem;
 }
-.user_data{
+.user_data, .user_settings{
     box-sizing: border-box;
     height: 2rem;
     width: 15rem;
@@ -175,4 +193,7 @@ body{
     height: 5rem;
     width: 5rem;
     margin: 2rem;
+}
+.hide{
+    display: none;
 }
