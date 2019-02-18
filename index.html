@@ -6,41 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="main.css">
-    <link href="https://fonts.googleapis.com/css?family=Aleo:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
     <script src="main.js"></script>
     <title>New Tab</title>
 </head>
 <body>
-    <div class="change-background"><span>Change background</span></div>
-    <div class="change-setup"><span>Setup</span></div>
-    <div class="tasks toggle-position">
-        <i class="material-icons">add_circle_outline</i>
-        <span class="add-task">Add Tasks</span>
-    </div>
-    <div class="tasks-list hide">
-        <p class="label">Add Task :</p>
-        <div class="wrapper">
-            <input type="text" class="text" placeholder="Enter tasks here" required>
-            <i class="material-icons add">add_circle_outline</i>
+    <div class="master-container">
+        <div class="change-background"><span>Change background</span></div>
+        <div class="change-setup"><span>Setup</span></div>
+        <div class="just-greet"><span>Just Greet Me!</span></div>
+        <div class="stop-greet hide"><span>Stop Greeting Me!</span></div>
+        <div class="default-background"><span>Default background</span></div>
+        <div class="tasks toggle-position">
+            <i class="material-icons">add_circle_outline</i>
+            <span class="add-task">Add Tasks</span>
         </div>
-        <div class="task-list">
-        </div>
-    </div>
-    <div class="container">
-        <div class="time"></div>
-        <div class="greet"></div>
-        <div class="display hide">
-            <div class="setup">
-                <label for="none" class="">Add content to be displayed (Can be more than one!)</label>
-                <input type="text" class="user_data">
-                <button class="add-text btn">Add</button>
-                <button class="setup-complete btn">Submit</button>
+        <div class="tasks-list hide">
+            <p class="label">Add Task :</p>
+            <div class="wrapper">
+                <input type="text" class="text" placeholder="Enter tasks here" required>
+                <i class="material-icons add">add_circle_outline</i>
+            </div>
+            <div class="task-list">
             </div>
         </div>
-        <div class="display hide">
-            <div class="setup">
-                <img src="ajax-loader.gif" alt="" class="loading-gif">
-                <div>Loading, Please wait</div>
+        <div class="container">
+            <div class="time"></div>
+            <div class="greet"></div>
+            <div class="display hide">
+                <div class="setup">
+                    <label for="none" class="">Add content to be displayed (Can be more than one!)</label>
+                    <input type="text" class="user_data">
+                    <button class="add-text btn">Add</button>
+                    <button class="setup-complete btn">Submit</button>
+                </div>
+            </div>
+            <div class="greet-me hide">
+                <div class="setup-user-settings">
+                    <label for="none" class="">Please enter your name </label>
+                    <input type="text" class="user_settings">
+                    <button class="btn greet-me-complete">Add</button>
+                    <button id="complete" class="btn">Submit</button>
+                </div>
+            </div>
+            <div class="display hide">
+                <div class="setup">
+                    <img src="ajax-loader.gif" alt="" class="loading-gif">
+                    <div>Loading, Please wait</div>
+                </div>
             </div>
         </div>
     </div>
