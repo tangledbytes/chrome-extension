@@ -1,9 +1,13 @@
-// ======================================================================================================================
-
 const controller = () => {
+
+// ======================================================================================================
+// Setup global variables
 
     let user_data = JSON.parse(window.localStorage.getItem('user_data'));
     let task_data = JSON.parse(window.localStorage.getItem('task_data'));
+    let user_settings = JSON.parse(window.localStorage.getItem('user_settings'));
+    let defaultArg = 0;
+    let backgroundImage = JSON.parse(window.localStorage.getItem('backgroundImage'));
 
 // =======================================================================================================
 // Setup extension function here
@@ -29,20 +33,49 @@ const controller = () => {
                 else
                 user_btn.focus();
         })
-    };
+        };
 
-        const setupTaskUI = function(){
+        const setupTaskUI = function(arg){
             window.localStorage.setItem('task_data','[]');
         };
+
+        const userSettings = () => {
+            defaultArg = 1;
+            let userSettings = [];
+            userSettings.push(defaultArg);
+            document.querySelector('.greet-me').classList.remove('hide');
+            document.querySelector('.greet').classList.add('hide');
+            let user_btn = document.querySelector('.user_settings');
+            document.querySelector('.greet-me-complete').addEventListener('click', () => {
+                if(user_btn)
+                {
+                    userSettings.push(user_btn.value);
+                    window.localStorage.setItem('user_settings', JSON.stringify(userSettings));
+                    console.log(userSettings);
+
+                    // Clear input field
+                    user_btn.value = '';
+
+                    // Bring focus back to the field
+                    user_btn.focus();
+                }
+                else
+                    user_btn.focus();
+            });
+        }
 
         // Reload page after setup is completed
         document.querySelector('.setup-complete').addEventListener('click', () => {
             window.location.reload();
         })
+        document.getElementById('complete').addEventListener('click', () => {
+            window.location.reload();
+        })
         
         return {
-            setupCenterUI: setupCenterUI,
-            setupTaskUI: setupTaskUI
+            setupCenterUI,
+            setupTaskUI,
+            userSettings
         }
     };
 
@@ -108,9 +141,39 @@ const controller = () => {
         strDisplay(0);
         }
 
+        const hideGreet = () => {
+            document.querySelector('.just-greet').classList.toggle('hide');
+            document.querySelector('.stop-greet').classList.toggle('hide');
+        }
+
+        const revertChanges = () => {
+            window.localStorage.removeItem('user_settings');
+            window.location.reload();
+        }
+
+        const revertBackground = () => {
+            window.localStorage.removeItem('backgroundImage');
+            window.location.reload();
+        }
+
+        const greet = name => {
+            let greet = document.querySelector('.greet');
+            let time = new Date().getHours();
+            if (time >= 0 && time < 12)
+                greet.innerHTML = 'Good Morning, ' + name;
+            else if (time >= 12 && time < 4)
+                greet.innerHTML = 'Good Afternoon, ' + name;
+            else
+                greet.innerHTML = 'Good Evening, ' + name;
+        }
+
         return {
-            displayTime: displayTime,
-            typingEffect: typingEffect
+            displayTime,
+            typingEffect,
+            greet,
+            hideGreet,
+            revertChanges,
+            revertBackground
         }
 
     })();   
@@ -192,6 +255,7 @@ const controller = () => {
 // AJAX call to Unsplash here for changing backgrond
 
     const changeBackground = function(){
+        
         document.querySelector('.change-background').addEventListener('click', background);
 
         function background(){
@@ -200,14 +264,16 @@ const controller = () => {
             Http.open("GET", url, true);
             Http.send();
             Http.onreadystatechange=(e)=>{
-                console.log(typeof Http.responseText);
+                // console.log(typeof Http.responseText);
             var response = Http.responseText;
-            console.log(response);
+            // console.log(response);
             var responseObj = JSON.parse(Http.responseText);
-            console.log(responseObj);
+            // console.log(responseObj);
             var url = responseObj.links.html;
-            console.log(url);
-            document.body.style.backgroundImage = `url(${url}/download)`;
+            // console.log(url);
+            backgroundImage = `url(${url}/download)`;
+            window.localStorage.setItem('backgroundImage',JSON.stringify(new Array(backgroundImage)));
+            document.body.style.backgroundImage = backgroundImage;
             }
         }
         
@@ -217,20 +283,36 @@ const controller = () => {
 
     const UIexec = (function(){
 
+        // Background Image setup
+        if(backgroundImage)
+        {
+            document.body.style.backgroundImage = backgroundImage;
+        }
+
+        // output time
+        centerUI.displayTime();
+
         // Calling setupExtension only if it was not setup earlier
         if(!window.localStorage.getItem('user_data'))
         {
             setupExtension().setupCenterUI();
             setupExtension().setupTaskUI();
-            // output time
-            centerUI.displayTime();
         }
         else
         {
-            // output time
-            centerUI.displayTime();        
-            // output the user_data
-            centerUI.typingEffect();
+            if (user_settings)
+            {
+                centerUI.greet(user_settings[1]);
+                // Now hide "Just Greet Me" button and show "Stop Greeting Me" button
+                centerUI.hideGreet();
+                // Setting up an event listener to revert changes
+                document.querySelector('.stop-greet').addEventListener('click',centerUI.revertChanges);
+            }
+            else
+            {
+                // output the user_data
+                centerUI.typingEffect();
+            }       
             // Run taskUI function only if setup is completed
             taskUI.toggleTaskbar();
             taskUI.addTasks();
@@ -240,10 +322,13 @@ const controller = () => {
             changeBackground();
             // Event listener to access setup manually
             document.querySelector('.change-setup').addEventListener('click',setupExtension().setupCenterUI);
+            // Event listener to access greet menu
+            document.querySelector('.just-greet').addEventListener('click', setupExtension().userSettings);
+            // Event listener to revert background image to default
+            document.querySelector('.default-background').addEventListener('click', centerUI.revertBackground);
         }
 
     })();
-
 }
-window.onload = controller;
 
+window.onload = controller;
