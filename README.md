@@ -1,6 +1,15 @@
 # Chrome extension for custom new tabs
 
-This extension gives a custom new tab like momentum extension.
+This extension gives a custom new tab. Below is a method to use it on your system. The extension is not yet available in the chrome store.
+
+## How to use:
+1. Clone the repository
+2. Open Google Chrome and go to chrome://extensions
+3. Enable Developer mode in top right corner
+4. Click on load unpacked
+5. Select the downloaded repository folder
+
+The Extension is set for use, further instructions are in the extension!
 
 ## UPDATE 17/02
 
