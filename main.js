@@ -224,7 +224,7 @@ const controller = () => {
 		function deleteTask() {
 			var selectedTask = document.querySelector(".task-list");
 			selectedTask.addEventListener("click", function (event) {
-				var deleteID = event.target.parentNode.id;
+				var deleteID = event.target.id;
 
 				// Split the id to get the index number
 
