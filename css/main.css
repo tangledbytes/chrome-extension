@@ -178,6 +178,7 @@ body{
     height: 22rem;
     width: 55rem;
     position: relative;
+	background-color: rgba(0,0,0,0.5);
 }
 .overflow{
     overflow-y: auto;
