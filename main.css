@@ -43,6 +43,7 @@ body{
 }
 .change-setup{
     top: 7rem;
+    z-index: 1;
 }
 .just-greet, .stop-greet{
     top: 12rem;
