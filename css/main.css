@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: url(background_image.jpg) no-repeat center center/cover;
+    background: url(../background_image.jpg) no-repeat center center/cover;
     height: 100vh;
     overflow: hidden;
     color: white;
@@ -181,6 +181,7 @@ body{
 }
 .overflow{
     overflow-y: auto;
+    overflow-x: hidden;
     height: 18rem;
 }
 .form{
