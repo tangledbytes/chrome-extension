@@ -22,7 +22,8 @@ The Extension is set for use, further instructions are in the extension!
 1. Refactored code
 2. Elegant design and smoother transitions
 3. Finally added loading gif
-4. A feature which enables user to save their favorite sites at one place for easy access
+4. A feature which enables user to save their favorite sites at one place for easy access from any page by clicking on the
+   extension icon on the top.
 
 ### Here are some screenshots:
 
