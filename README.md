@@ -28,15 +28,18 @@ The Extension is set for use, further instructions are in the extension!
 ### Here are some screenshots:
 
 #### Let the extension greet you
-![ess1](https://user-images.githubusercontent.com/45818886/53065983-f1cdbb80-34f3-11e9-9e03-bdab683aec13.png)
+![ess1](https://user-images.githubusercontent.com/45818886/53117500-0ef49f80-3571-11e9-87d1-122b06f687c8.png)
 
 #### Display custom text with typing effect
-![ess3](https://user-images.githubusercontent.com/45818886/53066000-f85c3300-34f3-11e9-83b2-969bee576e74.png)
-![ess4](https://user-images.githubusercontent.com/45818886/53066001-f8f4c980-34f3-11e9-9870-19b1973c43d5.png)
+![ess2](https://user-images.githubusercontent.com/45818886/53117577-3a778a00-3571-11e9-9171-cfbb58521fe9.png)
+![ess3](https://user-images.githubusercontent.com/45818886/53117667-6dba1900-3571-11e9-8f6b-bb0d117fd6c7.png)
 
 #### Change background images and save the changes
-![ess5](https://user-images.githubusercontent.com/45818886/53066143-859f8780-34f4-11e9-8daf-dbfbfa4ac950.png)
+![ess4](https://user-images.githubusercontent.com/45818886/53117668-6e52af80-3571-11e9-9ae5-7b422ac94b3a.png)
 
 #### Add tasks that you look forward to complete
-![ess2](https://user-images.githubusercontent.com/45818886/53065999-f85c3300-34f3-11e9-8215-f501924eb72d.png)
+![ess5](https://user-images.githubusercontent.com/45818886/53117670-6e52af80-3571-11e9-80da-9cc76f818772.png)
+
+#### Add favorite sites from anywhere in the browser from the extension popup menu
+![ess6](https://user-images.githubusercontent.com/45818886/53117672-6eeb4600-3571-11e9-85b3-0ea645f5d34d.png)
 
