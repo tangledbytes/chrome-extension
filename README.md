@@ -11,29 +11,31 @@ This extension gives a custom new tab. Below is a method to use it on your syste
 
 The Extension is set for use, further instructions are in the extension!
 
-## UPDATE 17/02
-
-1. Code is refactored now
-2. A function for changing background image is given which is still experimental and will be updated soon
-3. A setup feature is also given so that this extension can now work on any system
-
 ## UPDATE 19/02
 
 1. A bit messy code
 2. Added an option to change background images and save the change
 3. Custom greet method added
 
+## UPDATE 20/02
+
+1. Refactored code
+2. Elegant design and smoother transitions
+3. Finally added loading gif
+4. A feature which enables user to save their favorite sites at one place for easy access
+
 ### Here are some screenshots:
 
 #### Let the extension greet you
-![ess1](https://user-images.githubusercontent.com/45818886/52974896-3e78a000-33e9-11e9-8093-b0f8db5225e0.png)
+![ess1](https://user-images.githubusercontent.com/45818886/53065983-f1cdbb80-34f3-11e9-9e03-bdab683aec13.png)
 
 #### Display custom text with typing effect
-![ess2](https://user-images.githubusercontent.com/45818886/52974897-3e78a000-33e9-11e9-82b1-3332286215f5.png)
+![ess3](https://user-images.githubusercontent.com/45818886/53066000-f85c3300-34f3-11e9-83b2-969bee576e74.png)
+![ess4](https://user-images.githubusercontent.com/45818886/53066001-f8f4c980-34f3-11e9-9870-19b1973c43d5.png)
 
 #### Change background images and save the changes
-![ess3](https://user-images.githubusercontent.com/45818886/52974898-3f113680-33e9-11e9-9ea0-34d3048d6ee3.png)
+![ess5](https://user-images.githubusercontent.com/45818886/53066143-859f8780-34f4-11e9-8daf-dbfbfa4ac950.png)
 
 #### Add tasks that you look forward to complete
-![ess4](https://user-images.githubusercontent.com/45818886/52975005-afb85300-33e9-11e9-8d1c-959ba3b9b0f2.png)
+![ess2](https://user-images.githubusercontent.com/45818886/53065999-f85c3300-34f3-11e9-8215-f501924eb72d.png)
 
