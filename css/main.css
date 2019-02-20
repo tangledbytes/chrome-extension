@@ -7,6 +7,25 @@ body{
     color: white;
     position: relative;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: wheat; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.9); 
+}
 .master-container{
     background-color: rgba(0,0,0,0.4);
     width: 100vw;
@@ -174,19 +193,34 @@ body{
 }
 .fav-pages{
     margin-top: 4rem;
-    display: inline;
+    display: inline-block;
     height: 22rem;
     width: 55rem;
     position: relative;
-	background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.5);
+    border: 2px solid white;
+    border-radius: 0.8rem;
 }
 .overflow{
     overflow-y: auto;
     overflow-x: hidden;
-    height: 18rem;
+    height: 17.7rem;
+    grid-column: 2;
+    grid-row: 2;
+}
+#links{
+    margin: 1rem;
+    padding: 0.5rem;
+    color: black;
+    background: white;
+    width: 5rem;
+    border-radius: 0.3rem;
 }
 .form{
-    margin: 0 1.5rem;
+    margin: 2rem 1.5rem;
+}
+.form .btn{
+    margin: 1rem;
 }
 .fav-site-url, .fav-site-title{
     box-sizing: border-box;
@@ -199,13 +233,13 @@ body{
     padding: 0.5rem;
 }
 .instruct{
-    grid-column: 2;
-    position: absolute;
-    right: 0;
-    width: 20rem;
-    height: 15.5rem;
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
     padding: 1rem;
-    border-left: 2px solid white;
+    border-right: 2px solid white;
+    font-size: 1.3rem;
+    height: 20.1rem;
 }
 .flex-box{
     display: flex;
@@ -213,22 +247,18 @@ body{
 }
 .box{
     display: grid;
-    grid-template-columns: 6fr 4fr;
+    grid-template-columns: 4fr 6fr;
+    grid-template-rows: 1fr 9fr;
 }
 .tiles a{
     text-decoration: none;
     color: inherit;
 }
-.tile:first{
-    padding-top: 1rem;
-}
 .tile{
-    grid-column: 1;
     margin: 0 2rem;
     cursor: pointer;
     display: grid;
     grid-template-columns: 9fr 1fr;
-    /* width: 45%; */
 }
 .gif{
     background-color: transparent;
@@ -247,10 +277,18 @@ body{
 }
 .btn{
     margin: 0.5rem;
-    width: 6rem;
-    height: 1.8rem;
+    width: 7rem;
+    height: 2.2rem;
     border-radius: 0.5rem;
+    border: 2px solid white;
+    color: white;
     cursor: pointer;
+    background: transparent;
+    font-size: 1rem;
+}
+.btn:hover{
+    color: black;
+    background: wheat;
 }
 .loading-gif{
     height: 5rem;

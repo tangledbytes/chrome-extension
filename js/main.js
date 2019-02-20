@@ -281,8 +281,8 @@ const controller = () => {
 				text_submit += `<div class="tile">
 				<div class="flex-box">
 				<a href=${fav_sites[i]["siteURL"]}>
-				${fav_sites[i]["siteTitle"].length > 35
-						? fav_sites[i]["siteTitle"].substring(0, 35) + '...' : fav_sites[i]["siteTitle"]}
+				${fav_sites[i]["siteTitle"].length > 30
+						? fav_sites[i]["siteTitle"].substring(0, 30) + '...' : fav_sites[i]["siteTitle"]}
 				</a>
 				</div>
 				<i id="site-${i}" class="material-icons del">cancel</i></div>`;
@@ -389,7 +389,7 @@ const controller = () => {
 			changeBackground();
 
 			// Initial event listeners
-			const eventListers = (function () {
+			const eventListeners = (function () {
 				// Event listener to access setup manually
 				document.querySelector(".change-setup").addEventListener("click", setupExtension().setupCenterUI);
 				// Event listener to access greet menu
