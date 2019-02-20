@@ -134,12 +134,11 @@ body{
 }
 .container{
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    height: 50vh;
+    transform: translate(-50%,-65%);
+    height: 30vh;
     width: 100vw;
-    
 }
 
 .greet, .time{
@@ -161,7 +160,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-.setup, .setup-user-settings{
+.setup, .setup-user-settings, .fav-pages{
     font-size: 1.2rem;
     margin: 1rem;
     background-color: rgba(0,0,0,0.8);
@@ -171,6 +170,67 @@ body{
     height: 5rem;
     width: 65%;
     border-radius: 0.3rem;
+}
+.fav-pages{
+    margin-top: 4rem;
+    display: inline;
+    height: 22rem;
+    width: 55rem;
+    position: relative;
+}
+.overflow{
+    overflow-y: auto;
+    height: 18rem;
+}
+.form{
+    margin: 0 1.5rem;
+}
+.fav-site-url, .fav-site-title{
+    box-sizing: border-box;
+    height: 1.8rem;
+    width: 15rem;
+    margin: 1rem;
+    border-radius: 0.3rem;
+    font-size: 1rem; 
+    outline: none;
+    padding: 0.5rem;
+}
+.instruct{
+    grid-column: 2;
+    position: absolute;
+    right: 0;
+    width: 20rem;
+    height: 15.5rem;
+    padding: 1rem;
+    border-left: 2px solid white;
+}
+.flex-box{
+    display: flex;
+    align-items: center;
+}
+.box{
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+}
+.tiles a{
+    text-decoration: none;
+    color: inherit;
+}
+.tile:first{
+    padding-top: 1rem;
+}
+.tile{
+    grid-column: 1;
+    margin: 0 2rem;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    /* width: 45%; */
+}
+.gif{
+    background-color: transparent;
+    position: absolute;
+    top: -50%;
 }
 .user_data, .user_settings{
     box-sizing: border-box;
