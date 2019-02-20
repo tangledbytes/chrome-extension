@@ -164,11 +164,13 @@ const controller = () => {
 
 		const greet = name => {
 			let greet = document.querySelector(".greet");
-			let time = new Date().getHours();
-			if (time >= 0 && time < 12) greet.innerHTML = "Good Morning, " + name;
-			else if (time >= 12 && time < 16)
-				greet.innerHTML = "Good Afternoon, " + name;
-			else greet.innerHTML = "Good Evening, " + name;
+			setInterval(() => {
+				let time = new Date().getHours();
+				if (time >= 0 && time < 12) greet.innerHTML = "Good Morning, " + name;
+				else if (time >= 12 && time < 16)
+					greet.innerHTML = "Good Afternoon, " + name;
+				else greet.innerHTML = "Good Evening, " + name;
+			}, 100);
 		};
 
 		return {
@@ -281,8 +283,8 @@ const controller = () => {
 				text_submit += `<div class="tile">
 				<div class="flex-box">
 				<a href=${fav_sites[i]["siteURL"]}>
-				${fav_sites[i]["siteTitle"].length > 30
-						? fav_sites[i]["siteTitle"].substring(0, 30) + '...' : fav_sites[i]["siteTitle"]}
+				${fav_sites[i]["siteTitle"].length > 22
+						? fav_sites[i]["siteTitle"].substring(0, 22) + '...' : fav_sites[i]["siteTitle"]}
 				</a>
 				</div>
 				<i id="site-${i}" class="material-icons del">cancel</i></div>`;
@@ -292,7 +294,6 @@ const controller = () => {
 
 		function deletefavSite() {
 			var selectedSite = document.querySelector(".tiles");
-			console.log("Here");
 			selectedSite.addEventListener("click", function (event) {
 				var deleteID = event.target.id;
 				if (deleteID) {
