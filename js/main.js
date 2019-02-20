@@ -226,19 +226,22 @@ const controller = () => {
 		function deleteTask() {
 			var selectedTask = document.querySelector(".task-list");
 			selectedTask.addEventListener("click", function (event) {
-				var deleteID = event.target.id;
+				var deleteID = event.target.parentNode.id;
+				if (deleteID) {
 
-				// Split the id to get the index number
+					// Split the id to get the index number
 
-				let ID = deleteID.split("-")[1];
+					let ID = deleteID.split("-")[1];
 
-				// Remove the task from task_data array
+					// Remove the task from task_data array
 
-				task_data.splice(Number(ID), 1);
+					task_data.splice(Number(ID), 1);
 
-				// Update UI
+					// Update UI
 
-				outputUI();
+					outputUI();
+				}
+
 			});
 		}
 		return {
