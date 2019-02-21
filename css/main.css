@@ -41,8 +41,8 @@ body{
 }
 .tasks,.change-background, .change-setup, .just-greet, .stop-greet,.default-background{
     position: absolute;
-    width: 13rem;
-    height: 3rem;
+    width: 13vw;
+    height: 6vh;
     top: 2rem;
     right: 21vw;
     border-top-left-radius: 0.8rem;
@@ -195,7 +195,7 @@ body{
     margin-top: 4rem;
     display: inline-block;
     height: 22rem;
-    width: 55rem;
+    width: 55vw;
     position: relative;
     background-color: rgba(0,0,0,0.5);
     border: 2px solid white;
@@ -268,7 +268,7 @@ body{
 .user_data, .user_settings{
     box-sizing: border-box;
     height: 2rem;
-    width: 15rem;
+    width: 15vw;
     margin: 1rem;
     border-radius: 0.3rem;
     font-size: 1.2rem; 
@@ -294,6 +294,7 @@ body{
     height: 5rem;
     width: 5rem;
     margin: 2rem;
+    border-radius: 50%;
 }
 .hide{
     display: none;

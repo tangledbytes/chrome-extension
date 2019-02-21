@@ -90,10 +90,10 @@ const controller = () => {
 	const centerUI = (function () {
 		const displayTime = () => {
 			const timeEl = document.querySelector(".time");
-			timeEl.textContent = new Date().toLocaleTimeString().substring(0, 5);
+			timeEl.textContent = new Date().toTimeString().substring(0, 5);
 			function curTime() {
-				let time = new Date().toLocaleTimeString();
-				timeEl.textContent = new Date().toLocaleTimeString().substring(0, 5);
+				let time = new Date().toTimeString();
+				timeEl.textContent = new Date().toTimeString().substring(0, 5);
 			}
 			setInterval(curTime, 1000);
 		};
