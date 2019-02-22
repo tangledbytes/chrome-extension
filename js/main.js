@@ -97,17 +97,18 @@ const controller = () => {
 			setInterval(curTime, 1000);
 		};
 
-		function typingEffect(greet, user_data) {
+		function typingEffect(greet, user_data, loop = true) {
 			// Function to display string
 			const strDisplay = (count, typeSpeed = 120, backspacePause = 500) => {
 				let i = 1;
 				let status = setInterval(count => {
-					greet.textContent = user_data[count].substring(0, i) + "|";
+					greet.innerHTML = user_data[count].substring(0, i) + "|";
 					if (i == user_data[count].length) {
 						clearInterval(status);
-						setTimeout(() => {
-							strDelete(count, user_data); // Call strDelete function to delete string from display
-						}, backspacePause);
+						setTimeout((loop) => {
+							if (loop)
+								strDelete(count, user_data); // Call strDelete function to delete string from display
+						}, backspacePause, loop);
 					}
 					++i;
 				}, typeSpeed, count);
@@ -116,7 +117,7 @@ const controller = () => {
 			const strDelete = (count, user_data, delSpeed = 100) => {
 				let i = user_data[count].length;
 				let status = setInterval(count => {
-					greet.textContent = user_data[count].substring(0, i) + "|";
+					greet.innerHTML = user_data[count].substring(0, i) + "|";
 					if (i == 0) {
 						clearInterval(status);
 						if (++count < user_data.length) {
@@ -132,7 +133,6 @@ const controller = () => {
 					--i;
 				}, delSpeed, count);
 			};
-
 			strDisplay(0);
 		}
 
