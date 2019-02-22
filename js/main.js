@@ -88,8 +88,7 @@ const controller = () => {
 	//  Manage centerUI functions here
 
 	const centerUI = (function () {
-		const displayTime = () => {
-			const timeEl = document.querySelector(".time");
+		const displayTime = (timeEl) => {
 			timeEl.textContent = new Date().toTimeString().substring(0, 5);
 			function curTime() {
 				let time = new Date().toTimeString();
@@ -98,9 +97,7 @@ const controller = () => {
 			setInterval(curTime, 1000);
 		};
 
-		function typingEffect() {
-			// Setup variables
-			let greet = document.querySelector(".greet");
+		function typingEffect(greet, user_data) {
 			// Function to display string
 			const strDisplay = count => {
 				let i = 1;
@@ -110,7 +107,7 @@ const controller = () => {
 						if (i == user_data[count].length) {
 							clearInterval(status);
 							setTimeout(() => {
-								strDelete(count); // Call strDelete function to delete string from display
+								strDelete(count, user_data); // Call strDelete function to delete string from display
 							}, 500);
 						}
 						++i;
@@ -120,7 +117,7 @@ const controller = () => {
 				);
 			};
 
-			const strDelete = count => {
+			const strDelete = (count, user_data) => {
 				let i = user_data[count].length;
 				let status = setInterval(
 					count => {
@@ -361,7 +358,7 @@ const controller = () => {
 		}
 
 		// output time
-		centerUI.displayTime();
+		centerUI.displayTime(document.querySelector(".time"));
 
 		// Calling setupExtension only if it was not setup earlier
 		if (!window.localStorage.getItem("user_data")) {
@@ -379,7 +376,7 @@ const controller = () => {
 					.addEventListener("click", centerUI.revertChanges);
 			} else {
 				// output the user_data
-				centerUI.typingEffect();
+				centerUI.typingEffect(document.querySelector(".greet"), user_data);
 			}
 			// Run taskUI function only if setup is completed
 			const runtaskUI = (function () {
