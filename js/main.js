@@ -329,7 +329,7 @@ const controller = () => {
 					.addEventListener("click", centerUI.revertChanges);
 			} else {
 				// output the user_data
-				centerUI.typingEffect(document.querySelector(".greet"), user_data);
+				centerUI.typingEffect(document.querySelector(".greet"), { user_data: user_data });
 			}
 			// Run taskUI function only if setup is completed
 			const runtaskUI = (function () {
